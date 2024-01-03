@@ -1,3 +1,4 @@
+from rest_framework.generics import GenericAPIView
 from rest_framework.views import APIView, Request, Response, status
 from .models import User
 from rest_framework_simplejwt.authentication import JWTAuthentication
@@ -6,7 +7,10 @@ from django.shortcuts import get_object_or_404
 from .permissions import IsAccountOwner
 
 
-class UserView(APIView):
+class UserView(GenericAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
     def post(self, request: Request) -> Response:
         """
         Registro de usuários
