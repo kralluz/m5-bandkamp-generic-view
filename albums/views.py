@@ -1,4 +1,5 @@
-from rest_framework.views import APIView, status, Response
+from rest_framework.views import status, Response
+from rest_framework.generics import GenericAPIView
 from .models import Album
 from .serializers import AlbumSerializer
 from django.shortcuts import get_object_or_404
@@ -7,9 +8,12 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 
-class AlbumView(APIView, PageNumberPagination):
+class AlbumView(GenericAPIView, PageNumberPagination):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticatedOrReadOnly]
+
+    queryset = Album.objects.all()
+    serializer_class = AlbumSerializer
 
     def get(self, request):
         """

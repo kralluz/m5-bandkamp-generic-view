@@ -1,5 +1,5 @@
 from rest_framework.generics import GenericAPIView
-from rest_framework.views import APIView, Request, Response, status
+from rest_framework.views import Request, Response, status
 from .models import User
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from .serializers import UserSerializer
@@ -23,7 +23,7 @@ class UserView(GenericAPIView):
         return Response(serializer.data, status.HTTP_201_CREATED)
 
 
-class UserDetailView(APIView):
+class UserDetailView(GenericAPIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAccountOwner]
 
