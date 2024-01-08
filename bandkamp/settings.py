@@ -102,7 +102,10 @@ WSGI_APPLICATION = "bandkamp.wsgi.application"
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
-    "default": {
+    'default': dj_database_url.config(
+        default=os.environ.get('DATABASE_URL')
+    ),
+    "developer_database": {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": os.getenv("POSTGRES_DB"),
         "USER": os.getenv("POSTGRES_USER"),
