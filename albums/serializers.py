@@ -13,4 +13,3 @@ class AlbumSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         return Album.objects.create(**validated_data)
-

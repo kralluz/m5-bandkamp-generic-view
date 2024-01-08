@@ -45,6 +45,7 @@ DJANGO_APPS = [
 
 THIRD_PARTY_APPS = [
     "rest_framework",
+    'drf_spectacular',
 ]
 
 MY_APPS = [
@@ -134,6 +135,7 @@ SIMPLE_JWT = {
 REST_FRAMEWORK = {
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
     "PAGE_SIZE": 2,
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
 
 # Internationalization
@@ -159,3 +161,11 @@ STATIC_URL = "static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 AUTH_USER_MODEL = "users.User"
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'BandKamp',
+    'DESCRIPTION': 'O BandKamp é uma plataforma dinâmica desenvolvida em Django, projetada para amantes da música. Ela permite aos usuários criar seus próprios perfis, cadastrar álbuns e músicas. Atualmente, estamos trabalhando para aprimorar suas funcionalidades e performance, garantindo uma experiência ainda mais agradável e eficiente para nossos usuários. PARA ACESSAR A VERSÃO REDOC ACESSE localhost:8000/api/docs/redoc/',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+}
+
